@@ -554,5 +554,25 @@
 </footer>
 
 <script src="js/app.js?v=15"></script>
+
+<!-- ==== 临时诊断层（读完后删除）==== -->
+<div id="dbg" style="position:fixed;left:0;right:0;top:40%;z-index:2147483647;background:#000;color:#0f0;font:600 19px/1.7 monospace;padding:16px;text-align:center;white-space:pre-wrap">DBG…</div>
+<script>
+setTimeout(function(){
+  var d=document.documentElement, b=document.body, w=window.innerWidth;
+  var p=document.querySelector('.archive__panel');
+  var m=document.querySelector('.archive__meta');
+  var r=m?m.querySelector('div'):null;
+  var v=r?r.querySelector('b'):null;
+  function sw(e){return e?e.clientWidth+'/'+e.scrollWidth:'-'}
+  document.getElementById('dbg').textContent =
+    'doc.scrollW / innerW\n' + d.scrollWidth + ' / ' + w + '\n' +
+    'body.scrollW ' + b.scrollWidth + '\n' +
+    'panel c/s ' + sw(p) + '\n' +
+    'metaRow c/s ' + sw(r) + '\n' +
+    'metaVal c/s ' + sw(v) + '\n' +
+    'DPR ' + window.devicePixelRatio;
+}, 2500);
+</script>
 </body>
 </html>
