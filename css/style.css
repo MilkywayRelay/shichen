@@ -691,13 +691,22 @@ body.san-crit .nav__meter-val{color:var(--warn);animation:blink .8s step-end inf
 .archive__bars{margin-bottom:30px;}
 .archive__bars-title{font-family:var(--font-d);font-size:10.5px;letter-spacing:.3em;color:var(--ink-4);margin-bottom:14px;}
 .archive__radar{display:flex;align-items:center;gap:24px;}
-.radar{width:232px;height:202px;flex-shrink:0;}
+.radar__wrap{flex-shrink:0;}
+.radar{width:232px;height:202px;display:block;}
 .radar__ring{fill:none;stroke:var(--line-2);stroke-width:1;}
+.radar__ring--base{stroke:var(--line-3);stroke-dasharray:3 3;}
 .radar__axis{stroke:var(--line-2);stroke-width:1;}
 .radar__fill{fill:var(--gold-3);stroke:var(--gold);stroke-width:1.5;stroke-linejoin:round;
   opacity:0;transition:opacity .9s var(--ease);}
 .radar.is-on .radar__fill{opacity:1;}
 .radar__lab{font-family:var(--font-d);font-size:10px;letter-spacing:.04em;fill:var(--ink-3);}
+.radar__lab:hover{fill:var(--ink);}
+.radar__note{
+  margin-top:2px;text-align:center;font-family:var(--font-m);font-size:9.5px;
+  letter-spacing:.1em;color:var(--ink-4);display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.radar__note span{padding-left:8px;border-left:1px solid var(--line-2);}
+.radar__note-base{color:var(--gold);}
 .cog{display:flex;flex-direction:column;gap:14px;flex:1;}
 .cog__row{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line-2);}
 .cog__tag{font-family:var(--font-cn);font-size:10.5px;letter-spacing:.16em;color:var(--ink-4);

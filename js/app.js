@@ -526,13 +526,20 @@
   })();
 
   // CoC7 八属性雷达图 + 主导/辅助认知功能
+  // ── 标尺说明 ──
+  // CoC 的八项属性原值是 3~18，但玩家日常引用的一律是技能值，
+  // 即「属性 × 5」的百分制（EDU 12 → 60，INT 16 → 80）。
+  // 直接标原值会让人误读成"很弱"，故全图统一走百分制，
+  // 并以 50（属性 10）作为人类基准线单独描出。
   function renderRadar(c) {
-    var attrs = c.coc;               // [[label, value], ...] 共 8 项，值 3~18
+    var attrs = c.coc;               // [[label, 原值], ...] 共 8 项，原值 3~18
     var n = attrs.length;
     var R = 82;                       // 雷达半径
     var CX = 152, CY = 118;           // SVG 中心
     var SZ_W = 304, SZ_H = 236;       // SVG 视口（左右留标签空间）
-    var rings = [3, 8, 13, 18];       // CoC 常见标尺（人类上下限附近）
+    var MAX = 100;                    // 百分制满格（属性 20，实战极少触及）
+    var rings = [25, 50, 75, 100];    // 百分制刻度，50 = 人类基准
+    function pct(v) { return v * 5; } // 属性原值 → 技能百分制
 
     function pt(i, r) {
       var a = (Math.PI * 2 * i / n) - Math.PI / 2;
@@ -544,12 +551,12 @@
       return ps.join(' ');
     }
 
-    var g = ['<svg class="radar" viewBox="0 0 ' + SZ_W + ' ' + SZ_H + '" role="img" aria-label="CoC7 属性雷达">'];
+    var g = ['<svg class="radar" viewBox="0 0 ' + SZ_W + ' ' + SZ_H + '" role="img" aria-label="CoC7 属性雷达（百分制）">'];
 
-    // 同心环
+    // 同心环（50 环为人类基准，另描）
     rings.forEach(function (rv) {
-      var rr = R * rv / 18;
-      g.push('<polygon class="radar__ring" points="' + poly(rr) + '"/>');
+      var rr = R * rv / MAX;
+      g.push('<polygon class="radar__ring' + (rv === 50 ? ' radar__ring--base' : '') + '" points="' + poly(rr) + '"/>');
     });
     // 轴线
     for (var i = 0; i < n; i++) {
@@ -560,12 +567,12 @@
     // 数值多边形（动画）
     var valPs = [];
     for (var j = 0; j < n; j++) {
-      var vp = pt(j, R * attrs[j][1] / 18);
+      var vp = pt(j, R * pct(attrs[j][1]) / MAX);
       valPs.push(vp[0].toFixed(2) + ',' + vp[1].toFixed(2));
     }
     g.push('<polygon class="radar__fill" points="' + valPs.join(' ') + '"/>');
 
-    // 轴顶点标签（属性缩写 + 数值）
+    // 轴顶点标签（属性缩写 + 百分制数值）
     for (var k = 0; k < n; k++) {
       var lp = pt(k, R + 18);
       var abbr = attrs[k][0];           // 形如 "力量 STR"
@@ -575,7 +582,8 @@
       var anchor = 'middle';
       if (Math.abs(lx - CX) < 8) anchor = 'middle';
       else anchor = lx > CX ? 'start' : 'end';
-      g.push('<text class="radar__lab" x="' + lx.toFixed(2) + '" y="' + ly.toFixed(2) + '" text-anchor="' + anchor + '">' + en + ' ' + attrs[k][1] + '</text>');
+      g.push('<text class="radar__lab" x="' + lx.toFixed(2) + '" y="' + ly.toFixed(2) + '" text-anchor="' + anchor + '">' +
+        en + ' ' + pct(attrs[k][1]) + '<title>' + cn + ' ' + en + ' · 技能值 ' + pct(attrs[k][1]) + '%（属性 ' + attrs[k][1] + '）</title></text>');
     }
 
     g.push('</svg>');
@@ -586,7 +594,9 @@
       '<div class="cog__row"><span class="cog__tag cog__tag--aux">辅助</span><b>' + c.cog.aux + '</b><span class="cog__cn">' + c.cog.auxLabel + '</span></div>' +
       '</div>';
 
-    return '<div class="archive__radar">' + g.join('') + cog + '</div>';
+    return '<div class="archive__radar"><div class="radar__wrap">' + g.join('') +
+      '<div class="radar__note">技能值 · 百分制　<span>外环 100</span><span class="radar__note-base">50 = 人类基准</span></div>' +
+      '</div>' + cog + '</div>';
   }
 
   // 人物档案轮播
