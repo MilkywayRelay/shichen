@@ -33,17 +33,21 @@ tools/                图像处理 / 自检脚本（Python，需 cv2、PIL、num
 
 仓库已带 `.github/workflows/pages.yml`：推送到 `main` 即自动构建发布。
 
-1. 在 GitHub 新建空仓库，**不要**勾选初始化 README
+1. 在 GitHub 新建空仓库（建议名 `shichen`），**不要**勾选初始化 README / .gitignore / license
 2. 关联并推送：
 
    ```bash
-   git remote add origin git@github.com:<用户名>/<仓库名>.git
-   git branch -M main
+   git remote add origin git@github.com:MilkywayRelay/shichen.git
    git push -u origin main
    ```
 
+   > 若没配 SSH key，改用 HTTPS：
+   > `git remote add origin https://github.com/MilkywayRelay/shichen.git`
+   > 密码处填 **Personal Access Token**（Settings → Developer settings →
+   > Personal access tokens → Tokens(classic)，勾选 `repo`），不是登录密码。
+
 3. 仓库 **Settings → Pages → Source** 选 **GitHub Actions**
-4. 稍等片刻，Actions 跑完即给出 `https://<用户名>.github.io/<仓库名>/`
+4. 稍等片刻，Actions 跑完即给出 `https://milkywayrelay.github.io/shichen/`
 
 也可以 `Actions → Deploy to GitHub Pages → Run workflow` 手动触发。
 
