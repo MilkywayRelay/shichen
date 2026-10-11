@@ -72,7 +72,9 @@
 
 *,*::before,*::after{box-sizing:border-box;}
 
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:clip;}/* ↑ 装饰层（.mana__halo 168%、.mana__plate::before 186%、.contamination 120vmax）
+     故意超出容器，不能就地裁掉，所以统一在视口层裁。clip 不创建滚动容器，
+     也不会像 hidden 那样破坏 position:sticky。 */
 
 body{
   margin:0;
@@ -82,7 +84,7 @@ body{
   font-size:15px;
   line-height:1.85;
   letter-spacing:.02em;
-  overflow-x:hidden;
+  overflow-x:clip;
   -webkit-font-smoothing:antialiased;
 }
 
@@ -681,9 +683,9 @@ body.san-crit .nav__meter-val{color:var(--warn);animation:blink .8s step-end inf
   display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px;
   margin:30px 0;border-top:1px solid var(--line-2);padding-top:22px;
 }
-.archive__meta div{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--line-2);font-size:12.5px;}
-.archive__meta span{color:var(--ink-4);letter-spacing:.1em;}
-.archive__meta b{font-weight:500;color:var(--ink-2);font-family:var(--font-d);letter-spacing:.04em;}
+.archive__meta div{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--line-2);font-size:12.5px;min-width:0;}
+.archive__meta span{color:var(--ink-4);letter-spacing:.1em;flex:0 1 auto;min-width:0;}
+.archive__meta b{font-weight:500;color:var(--ink-2);font-family:var(--font-d);letter-spacing:.04em;flex:0 1 auto;min-width:0;text-align:right;overflow-wrap:anywhere;}
 .archive__quote{
   margin:0 0 26px;padding-left:18px;border-left:2px solid var(--gold-3);
   font-size:14px;line-height:2;color:var(--ink-2);font-style:normal;

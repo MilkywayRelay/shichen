@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="css/style.css?v=23">
 </head>
 <body class="booting">
+<!-- 加载屏兜底：不依赖 app.js。
+     ① noscript：JS 被禁用时直接不显示加载屏
+     ② 内联定时器：app.js 报错卡住时，6 秒后无论如何撤掉加载屏并恢复滚动 -->
+<noscript><style>.boot{display:none!important}body.booting{overflow:auto!important}</style></noscript>
+<script>setTimeout(function(){document.body.classList.remove('booting');var b=document.getElementById('boot');if(b){b.classList.add('is-done');setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},700);}},6000);</script>
 
 <!-- ══════════ 浮尘粒子层 ══════════ -->
 <canvas id="dust-canvas" aria-hidden="true"></canvas>
