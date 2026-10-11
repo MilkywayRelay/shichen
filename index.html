@@ -557,17 +557,5 @@
 
 
 
-<div id="dbg" style="position:fixed;left:0;right:0;top:38%;z-index:2147483647;background:#000;color:#0f0;font:600 18px/1.7 monospace;padding:14px;text-align:center;white-space:pre-wrap">DBG…</div>
-<script>setTimeout(function(){
-  var e=document.querySelector('.stories');
-  var cs=e?getComputedStyle(e):null;
-  var n=e?e.children.length:0;
-  document.getElementById('dbg').textContent=
-    'innerW '+innerWidth+'   mq860 '+matchMedia('(max-width:860px)').matches+'\n'+
-    'stories 子元素 '+n+'\n'+
-    'gridTemplateColumns\n  '+ (cs?cs.gridTemplateColumns:'-') +'\n'+
-    'display '+(cs?cs.display:'-')+'\n'+
-    'style 内联 '+(e&&e.getAttribute('style')||'无');
-},2500);</script>
 </body>
 </html>

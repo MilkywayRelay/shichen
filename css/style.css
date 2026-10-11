@@ -962,6 +962,9 @@ body.storm .sec-head__no{-webkit-text-stroke-color:var(--warn-2);}
   .stat{border-right:0;margin-right:0;padding-right:0;min-width:44%;}
   .stat b{font-size:28px;}
   .world-grid,.world-notes,.fac,.stories{grid-template-columns:1fr;}
+  /* 单列时不能让末张跨列：span 2 会逼出隐式第二列，
+     把 1fr 挤成 56px，卡片里的中文就一字一行了。 */
+  .stories>.story:last-child:nth-child(3n+2){grid-column:auto;}
   .fac-feature{grid-template-columns:1fr;}
   .fac-feature__txt{padding:32px 24px;}
   .roster__grid{grid-template-columns:repeat(2,1fr);}
