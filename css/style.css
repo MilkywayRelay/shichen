@@ -3,6 +3,36 @@
    白金 + 灰 · 过度洁净的苍白档案室
    ══════════════════════════════════════════════════════════════ */
 
+/* ── 自托管字体 ──────────────────────────────────────────────
+   字体文件放在 assets/fonts/，不依赖 Google Fonts。
+   fonts.googleapis.com 在中国大陆不可达，会让 CSS 请求挂起、
+   阻塞首屏渲染（表现为打开后长时间白屏）。自托管后站点零外部依赖。
+   只保留 latin 子集（梵文 / latin-ext 用不到），6 个文件共约 100KB。 */
+@font-face{
+  font-family:'Rajdhani';font-style:normal;font-weight:300;font-display:swap;
+  src:url('../assets/fonts/Rajdhani-300.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Rajdhani';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/Rajdhani-400.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Rajdhani';font-style:normal;font-weight:500;font-display:swap;
+  src:url('../assets/fonts/Rajdhani-500.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Rajdhani';font-style:normal;font-weight:600;font-display:swap;
+  src:url('../assets/fonts/Rajdhani-600.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Rajdhani';font-style:normal;font-weight:700;font-display:swap;
+  src:url('../assets/fonts/Rajdhani-700.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/ShareTechMono-400.woff2') format('woff2');
+}
+
 :root{
   /* 底色 */
   --paper:#EDEBE6;
