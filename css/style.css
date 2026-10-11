@@ -884,22 +884,6 @@ body.san-crit .nav__meter-val{color:var(--warn);animation:blink .8s step-end inf
   text-shadow:0 1px 14px rgba(249,247,243,.95),0 0 30px rgba(249,247,243,.8);
 }
 .mana__body{font-size:14px;line-height:2.15;color:var(--ink-2);margin-bottom:30px;}
-.mana__body--ref{
-  font-size:13.5px;color:var(--ink-3);line-height:2;
-  padding:18px 0;margin:-6px 0 30px;
-  border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
-}
-.mana__body--ref em{color:var(--gold);letter-spacing:.08em;}
-.mana__chips{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:38px;}
-.mana__chips span{
-  font-size:12px;padding:7px 18px;border:1px solid var(--line-3);color:var(--ink-2);
-  letter-spacing:.14em;background:rgba(255,255,255,.6);
-}
-.mana__quote{
-  margin:0;font-size:14.5px;line-height:2.15;color:var(--ink-2);
-  padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-}
-
 /* ══════════ 页脚 ══════════ */
 .foot{position:relative;z-index:6;background:var(--paper-3);border-top:1px solid var(--line);padding:70px 0 34px;}
 .foot__top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid var(--line-2);}
