@@ -555,5 +555,24 @@
 
 <script src="js/app.js?v=15"></script>
 
+
+<div id="dbg" style="position:fixed;left:0;right:0;top:38%;z-index:2147483647;background:#000;color:#0f0;font:600 19px/1.75 monospace;padding:16px;text-align:center;white-space:pre-wrap">DBG…</div>
+<script>setTimeout(function(){
+  var w=window.innerWidth,d=document.documentElement,b=document.body;
+  var p=document.querySelector('.archive__panel');
+  var r=document.querySelector('.archive__radar');
+  var g=document.querySelector('.archive');
+  function cv(e){return e?e.getBoundingClientRect().width.toFixed(0):'-'}
+  var worst=0,who='-';
+  document.querySelectorAll('body *').forEach(function(e){
+    var x=e.getBoundingClientRect().right;
+    if(x>worst){worst=x;who=e.className&&e.className.toString().slice(0,26)||e.tagName}
+  });
+  document.getElementById('dbg').textContent=
+    'innerW '+w+'   doc.scrollW '+d.scrollWidth+'   body.scrollW '+b.scrollWidth+'\n'+
+    'archive  宽 '+cv(g)+'   panel 宽 '+cv(p)+'   radar 宽 '+cv(r)+'\n'+
+    '最右元素 +'+worst.toFixed(0)+'  ('+who+')\n'+
+    (worst<=w+1?'✅ 无元素超出视口':'❌ 超出 '+(worst-w).toFixed(0)+'px');
+},2500);</script>
 </body>
 </html>

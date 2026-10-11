@@ -669,7 +669,7 @@ body.san-crit .nav__meter-val{color:var(--warn);animation:blink .8s step-end inf
 .archive__hud-corner--bl{bottom:22px;left:22px;border-right:0;border-top:0;}
 .archive__hud-corner--br{bottom:22px;right:22px;border-left:0;border-top:0;}
 
-.archive__panel{padding:44px 46px;display:flex;flex-direction:column;}
+.archive__panel{padding:44px 46px;display:flex;flex-direction:column;min-width:0;}
 .archive__code-pre{font-family:var(--font-m);font-size:10px;letter-spacing:.34em;color:var(--ink-4);}
 .archive__code h3{
   font-family:var(--font-d);font-size:78px;font-weight:600;line-height:1;
@@ -965,7 +965,14 @@ body.storm .sec-head__no{-webkit-text-stroke-color:var(--warn-2);}
   .fac-feature{grid-template-columns:1fr;}
   .fac-feature__txt{padding:32px 24px;}
   .roster__grid{grid-template-columns:repeat(2,1fr);}
-  .archive__panel{padding:30px 22px;}
+  .archive__panel{padding:30px 22px;min-width:0;}
+  /* 雷达 232 + 间距 24 + 认知行最小内容 ≈ 138 = 394px min-content，
+     会把 1fr 列撑到 394（窄屏下 .wrap 只有约 324），右侧被视口切掉。
+     竖排 + min-width:0 后回落到容器内。 */
+  .archive__radar{flex-direction:column;align-items:center;gap:20px;}
+  .radar__wrap{flex-shrink:1;max-width:100%;}
+  .radar{width:min(232px,100%);height:auto;}
+  .cog{width:100%;}
   .archive__code h3{font-size:54px;}
   .archive__meta{grid-template-columns:1fr;}
   .tl__item{grid-template-columns:1fr;gap:10px;}
